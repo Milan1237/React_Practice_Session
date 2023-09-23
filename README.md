@@ -30,3 +30,14 @@ Session 2:
     {href:'https://google.com' , target:'_blank'},
     'click me to visit google ')  `
 
+Session 3:
+
+1: I have learned about why we should learn about hooks:
+    It is not possible to update a variable without hooks in react in realtime. React gives us hooks to propagate changes in hooks. React helps us to change all the variable in ui in a same time using hooks. Hooks helps developer not call the elements conventionally, means by id,tag name , class name etc. Because in a complex ui updating such thing would be difficult . 
+2: Also created a little learning project using useState hook. UseState is imported from React:
+    `import { useState } from 'react'`
+useState takes a default value: it could be a string, number , boolean , object , null etc;
+useState returns a array, in which the 0th index gives the default value and 1st index gives you the function which is used to update the value of 0th index value as well as all the value which is using the same variable naming in the jsx.
+
+
+
