@@ -41,4 +41,14 @@ useState takes a default value: it could be a string, number , boolean , object 
 useState returns a array, in which the 0th index gives the default value and 1st index gives you the function which is used to update the value of 0th index value as well as all the value which is using the same variable naming in the jsx.
 
 
+Day 3:
+
+Session 1: Learned about props and component in react how to propagate changes throughout the dom:
+    (a): this how we send props to a componets
+            <Card username = "Milan" myArray /> or\
+            <Card username='Suvo' myArray={myarr}/>
+    (b): We should always give variable instead of the main array or object.
+
+
+
 
