@@ -1,10 +1,12 @@
 import { useState } from 'react'
-
+import  Demo  from './Custom.jsx';
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <h1>Hello Milan, I am trying to learn react</h1>
+    <>
+      <h1>Hello Milan, I am trying to learn react</h1>
+      <Demo/>
+    </>
   )
 }
 
