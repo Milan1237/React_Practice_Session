@@ -8,6 +8,7 @@ import Contact from './routes/Contact'
 import { contactLoader } from './routes/Contact'
 import Edit from './routes/Edit'
 import {action as editAction} from './routes/Edit'
+import { deleteCont } from './routes/Delete'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
         element: <Contact />,
         loader: contactLoader,
         errorElement: <ErrorPage />,
+      },
+      {
+        path: "/contacts/:contactId/destroy",
+        action: deleteCont,
+        errorElement: <div>Hello this is an custom error for deleting a contact</div>
       },
 
       {
