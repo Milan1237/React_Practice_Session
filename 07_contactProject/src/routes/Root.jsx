@@ -1,37 +1,58 @@
-import { Link, Outlet, useLoaderData, Form , redirect, NavLink, useNavigation } from "react-router-dom";
+import { useSubmit, Outlet, useLoaderData, Form , redirect, NavLink, useNavigation } from "react-router-dom";
 import { getContacts ,createContact } from "../contacts";
+import { useEffect } from "react";
 
 export async function loader({request}) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
-  return  contacts ;
+  return  {contacts , q };
 }
 
 export async function action() {
-  const contact = await createContact();
+  const contact= await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
 }
 export default function Root() {
-  let  contacts  = useLoaderData()
+  
+  let  { contacts , q  }= useLoaderData()
   let navigation = useNavigation();
+  let submit = useSubmit();
+  useEffect(()=>{
+    document.getElementById('q').value = q ;
+  } , [q] );
+
+  const searching = false;
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has(
+      "q"
+    );
+   
   return (
     <>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <Form id="search-form" role="search">
+          <Form id="search-form" role="search"  >
             <input
               id="q"
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
+              className={searching ? "loading" : ""}
+              defaultValue={q}
               name="q"
+              onChange={(event)=>{ 
+                const isFirstSearch = (q == null)? true : false ;
+                submit(event.currentTarget.form , {
+                  replace : ! isFirstSearch
+                } );
+                 }}
             />
             <div
               id="search-spinner"
               aria-hidden
-              hidden={true}
+              hidden={!searching}
             />
             <div
               className="sr-only"

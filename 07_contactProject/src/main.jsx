@@ -5,10 +5,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root, { loader as rootLoader, action as rootAction } from './routes/Root'
 import ErrorPage from './ErrorPage'
 import Contact from './routes/Contact'
-import { contactLoader } from './routes/Contact'
+import { contactLoader , favoriteAction } from './routes/Contact'
 import Edit from './routes/Edit'
 import {action as editAction} from './routes/Edit'
 import { deleteCont } from './routes/Delete'
+import Index from './routes'
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,13 @@ const router = createBrowserRouter([
     action: rootAction,
     errorElement: <ErrorPage />,
     children: [
+      {index:true , element: <Index />},
       {
         path: "contacts/:contactId",
         element: <Contact />,
         loader: contactLoader,
         errorElement: <ErrorPage />,
+        action: favoriteAction,
       },
       {
         path: "/contacts/:contactId/destroy",
