@@ -60,7 +60,7 @@ body {
 
 .square {
   background: #fff;
-  border: 1px solid white;
+  border: 1px solid black;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -71,6 +71,7 @@ body {
   padding: 0;
   text-align: center;
   width: 34px;
+  color: black;
 }
 
 .board-row:after {
@@ -89,4 +90,8 @@ body {
 
 .game-info {
   margin-left: 20px;
+}
+.button{
+  background-color: white;
+  color: black;
 }
