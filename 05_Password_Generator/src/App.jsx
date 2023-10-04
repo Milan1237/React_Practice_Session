@@ -10,7 +10,7 @@ function App() {
   let copyToClipboard =useCallback( ()=>{
     passwordRef.current?.select();
     // passwordRef.current?.setSelectionRange(0 , 3);//this method is used to copy password a particulor number of thing
-    window.navigator.clipboard.write(password);
+    window.navigator.clipboard.writeText(password);
   },[password]);
   let passwordGenerator = useCallback(()=>{
     let pass = "";
