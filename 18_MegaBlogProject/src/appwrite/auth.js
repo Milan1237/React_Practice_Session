@@ -50,7 +50,7 @@ export  class AuthService {
 
     async logOut(){
         try {
-            this.account.deleteSessions();
+            await this.account.deleteSessions();
         } catch (error) {
             console.error('got error in logOut function' , error);
         }

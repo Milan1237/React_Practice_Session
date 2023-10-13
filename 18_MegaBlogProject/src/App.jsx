@@ -1,12 +1,35 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import conf from './conf/conf.js'
+import {useDispatch} from 'react-redux'
+import authService from './appwrite/auth'
+import {login , logout} from './store/authStore'
+import {Footer , Header} from './Components/index'
 
 function App() {
-  console.log(conf)
-  return (
-    <>
-      
-    </>
+  const [loading , setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    authService.getCurrentUser()
+    .then((userData)=>{
+      if(userData){
+        dispatch(login({userData}));
+      }
+      else{
+        dispatch(logout());
+      }
+    })
+    .finally(()=>{setLoading(false)});
+  } , []);
+
+  return !loading ? (
+    <div>
+      <Header />
+      <Footer />
+    </div>
+  ): (
+    <div>loading</div>
   )
 }
 
