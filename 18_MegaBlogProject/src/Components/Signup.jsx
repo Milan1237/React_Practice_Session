@@ -7,30 +7,32 @@ import { login } from "../store/authStore"
 import Input from "./Input";
 import Button from "./Button";
 
-function Login() {
+function Signup() {
     const [error, setError] = useState("");
-    const [register, handleSubmit] = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [register, handleSubmit] = useForm();
 
-    async function signin(data) {
-        setError('');
+    async function signUp(data) {
+        setError("");
         try {
-            const session = await authService.logIn(data);
+            const session = await authService.createAccount(data);
             if (session) {
-                const userData = authService.getCurrentUser();
+                const userData = await authService.getCurrentUser();
                 if (userData) {
                     dispatch(login(userData));
-                    navigate(`/`);
+                    navigate('/');
                 }
             }
+
+
         } catch (error) {
             setError(error);
         }
     }
 
-
     return (
+
         <div className="flex items-center justify-center w-full">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
                 <div className="mb-2 flex justify-center">
@@ -41,19 +43,28 @@ function Login() {
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
 
                 <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
+                    Allready Have an account? 
 
                     <Link
-                        to="/signup"
+                        to="/signin"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        Sign Up
+                        Sign in
                     </Link>
 
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-                <form onSubmit={handleSubmit(signin)} >
+                <form onSubmit={handleSubmit(signUp)}>
+
+                    <Input
+                        label="Name: "
+                        placeholder="Enter Your Name "
+                        type="text"
+                        {...register("name"), {
+                            required: true
+                        }}
+                    />
 
                     <Input
                         label='Email: '
@@ -79,14 +90,14 @@ function Login() {
                         }
                     />
 
-                    <Button children={"Sign In"} className=" w-full" type="submit" />
+                    <Button children={"Create Account"} className=" w-full" type="submit" />
 
                 </form>
 
             </div>
-
         </div>
+
     );
 }
 
-export default Login;
+export default Signup;
