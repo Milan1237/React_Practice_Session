@@ -12,7 +12,7 @@ function RTE({ name, control, label, defaultValue }) {
         <div className=" w-full">
             <label htmlFor={id}>{label && label}</label>
             <Controller
-                name={name ? name : "content"}
+                name={name ? name : "Content"}
                 control={control}
                 render={({ field:{onChange} }) => (
                     <Editor

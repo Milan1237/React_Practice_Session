@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth";
 import { useForm } from 'react-hook-form'
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import { login } from "../store/authStore"
 import Input from "./Input";
 import Button from "./Button";
-
+import {Logo} from "./index"
 function Signup() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [register, handleSubmit] = useForm();
+    const {register, handleSubmit} = useForm();
 
     async function signUp(data) {
         setError("");
@@ -61,9 +61,9 @@ function Signup() {
                         label="Name: "
                         placeholder="Enter Your Name "
                         type="text"
-                        {...register("name"), {
+                        {...register("name", {
                             required: true
-                        }}
+                        })}
                     />
 
                     <Input

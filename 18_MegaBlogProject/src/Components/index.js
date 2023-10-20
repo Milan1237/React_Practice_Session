@@ -7,6 +7,9 @@ import Button from "./Button"
 import Input from "./Input"
 import RTE from "./RTE";
 import Select from "./Select"
-import SignUp from "./Signup"
+import Signup from "./Signup"
 import Login from "./Login"
-export { Footer , Header , Logo , LogoutBtn , Container , Button , Input , Select , RTE  }; 
+import PostForm from "./PostForm";
+import PostCard from './PostCard'
+ 
+export {RTE ,PostForm, PostCard, Signup, Login , Footer , Header , Logo , LogoutBtn , Container , Button , Input , Select   }; 

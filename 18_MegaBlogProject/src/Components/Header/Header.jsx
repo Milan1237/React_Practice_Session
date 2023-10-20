@@ -1,6 +1,5 @@
 import React from "react";
-import Container from "../Container/Container";
-import { Logo, Container, LogoutBtn } from '../index'
+import { Logo, Container, LogoutBtn } from '../../Components/index'
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../store/authStore";
@@ -8,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
 
-    const authStatus = useSelector((state) => state.auth.login);
+    const authStatus = useSelector((state) => state.status)
     const navigate = useNavigate();
 
     const navItems = [
@@ -48,7 +47,6 @@ export default function Header() {
                     <div className='mr-4'>
                         <Link to='/'>
                             <Logo width='70px' />
-
                         </Link>
                     </div>
 

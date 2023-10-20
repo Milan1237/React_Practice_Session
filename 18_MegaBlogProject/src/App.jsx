@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux'
 import authService from './appwrite/auth'
 import {login , logout} from './store/authStore'
 import {Footer , Header} from './Components/index'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [loading , setLoading] = useState(true);
@@ -26,6 +27,7 @@ function App() {
   return !loading ? (
     <div>
       <Header />
+      <Outlet />
       <Footer />
     </div>
   ): (

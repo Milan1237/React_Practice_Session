@@ -4,21 +4,20 @@ import {useNavigate} from 'react-router-dom'
 import {Button , Input , RTE , Select} from "./index"
 import  Service  from "../appwrite/config";
 import { useSelector } from "react-redux";
-import service from "../appwrite/config";
 
 function PostForm({post}) {
-    const {register , control , handleSubmit , watch , setValue } = useForm({
+    const {register , control , handleSubmit , watch , setValue, getValues } = useForm({
         defaultValues:{
-           title :  post?.title || "" , 
-           slug: post?.slug || "" , 
-           content: post?.content || "",
-           status : post?.status || ""
-        }
+            Title :  post?.Title || "" , 
+            slug: post?.slug || "" , 
+            Content: post?.Content || "",
+            status : post?.status || ""
+         }
         
     })
-
+  
     const navigate = useNavigate();
-    const userData = useSelector(state => state.auth.userData);
+    const userData = useSelector(state => state.userData);
 
     async function submit(data){
         if(post){
@@ -26,8 +25,8 @@ function PostForm({post}) {
             if(file){
                 await Service.deleteFile(post.featuredImage);
             }
-            const dbPost = await Service.updatePost(data.slug , {...data , featuredImage: file ? file.$id : undefined});
-            navigate(`/post/${dbPost.$id}`)
+            const dbPost = await Service.updatePost(post.$id , {...data , featuredImage: file ? file.$id : undefined});
+            navigate(`/posts/${post.slug}`)
         }
 
         else{
@@ -36,7 +35,8 @@ function PostForm({post}) {
                 const fileId = file.$id;
                 data.featuredImage = fileId ;
             }
-            const dbPost = await Service.createPost({...data , userId: userData.userId});
+            const dbPost = await Service.createPost({...data , userId: userData.userData.$id});
+            navigate(`/posts/${data.slug}`)
         }
 
     }
@@ -53,8 +53,8 @@ function PostForm({post}) {
 
     useEffect(()=>{
         const subscription = watch((value ,{name})=>{
-            if(name === "title"){
-                setValue("slug" , slugTransform(value.title), {shouldValidate:true});
+            if(name === "Title"){
+                setValue("slug" , slugTransform(value.Title), {shouldValidate:true});
             }
         }); 
 
@@ -70,7 +70,7 @@ function PostForm({post}) {
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
-                    {...register("title", { required: true })}
+                    {...register("Title", { required: true })}
                 />
                 <Input
                     label="Slug :"
@@ -81,7 +81,7 @@ function PostForm({post}) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <RTE label="Content :" name="Content" control={control} defaultValue={getValues("Content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -94,8 +94,8 @@ function PostForm({post}) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
-                            alt={post.title}
+                            src={Service.getFilePreview(post.featuredImage)}
+                            alt={post.Title}
                             className="rounded-lg"
                         />
                     </div>

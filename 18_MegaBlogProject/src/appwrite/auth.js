@@ -42,7 +42,7 @@ export  class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.error('got an error in getCurrentUser', error);
+            console.log('got an error in getCurrentUser', error);
         }
 
         return null ;

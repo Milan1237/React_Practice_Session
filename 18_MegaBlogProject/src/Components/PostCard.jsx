@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import service from '../appwrite/config'
 
-function PostCard({ $id, featuredImage, title }) {
+function PostCard({ $id, featuredImage, Title }) {
 
     return (
         <Link to={`/posts/${$id}`}>
@@ -12,7 +12,7 @@ function PostCard({ $id, featuredImage, title }) {
                     <img src={service.getFilePreview(featuredImage)} alt="" className='rounded-xl' />
                 </div>
                 <h1 className="text-xl font-bold">
-                    {title}
+                    {Title}
                 </h1>
 
             </div>

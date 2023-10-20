@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth";
 import { useForm } from 'react-hook-form'
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { login } from "../store/authStore"
 import Input from "./Input";
 import Button from "./Button";
+import {Logo} from "./index"
 
 function Login() {
     const [error, setError] = useState("");
-    const [register, handleSubmit] = useForm();
+    const {register, handleSubmit}= useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

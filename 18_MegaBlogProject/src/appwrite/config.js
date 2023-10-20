@@ -13,35 +13,38 @@ class Service {
             .setProject(conf.projectId);
 
         this.databases = new Databases(this.client);
-        this.bucket = new Storage(this.bucket);
+        this.bucket = new Storage(this.client);
     }
 
-    async createPost({ title, content, slug, status, featuredImage, userId }) {
+    async createPost({ Title, Content, slug, status, featuredImage, userId }) {
+        
+        const UserId = userId ;
+        
         try {
             return await this.databases.createDocument(conf.databseId, conf.collectionId, slug, {
-                title,
-                content,
+                Title,
+                Content,
                 status,
                 featuredImage,
-                userId
+                UserId
             });
         } catch (error) {
             console.log('got error in creating a post ', error);
         }
     }
 
-    async updatePost(slug, { title, content, status, featuredImage }) {
+    async updatePost(slug, { Title, Content, status, featuredImage }) {
         try {
             return await this.databases.updateDocument(conf.databseId, conf.collectionId, slug, {
-                title,
-                content,
+                Title,
+                Content,
                 featuredImage,
                 status,
 
             })
 
         } catch (error) {
-            console.log('error in updating the post ');
+            console.log('error in updating the post ', error);
         }
     }
 
@@ -61,7 +64,7 @@ class Service {
                 conf.collectionId,
                 slug);
         } catch (error) {
-            console.log('find an error finding the error');
+            console.log('find an error finding the post' , error);
         }
     }
 
