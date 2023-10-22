@@ -1,8 +1,7 @@
 import configData from '../conf/conf'
 import { Client, Account, ID } from "appwrite"
-import { useNavigate } from "react-router-dom"
 
-export default class Service {
+ class Service {
     client;
     account;
 
@@ -53,5 +52,14 @@ export default class Service {
         return null ;
     }
 
-    //write the logout logic then move ahead
+    logout = async ()=>{
+        try {
+            await this.account.deleteSession('current');
+        } catch (error) {
+            console.log("got an error while logging out", error);
+        }
+    }
 }
+
+const service = new Service ;
+export default service ;

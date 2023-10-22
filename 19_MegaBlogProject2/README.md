@@ -46,7 +46,7 @@ Status: wheather the user wants to show his/her blog to make public.
 
 FeaturedImage: the main picture of the blog
 
-**Database Details / Database url :**
+**Database Details / Database essentials :**
 You can access all the environment variable from configData object from `./src/conf/conf.js`;
 the configData comprised of these properties:
 ```javascript
@@ -55,6 +55,18 @@ the configData comprised of these properties:
     collectionId:
     bucketId:
 ```
+
+**Authentication Database Service :**
+
+We have design four function related to Authentication Service. And the functions are:
+1. createAccount({name , email , password}); takes a object which includes 'name' , 'email' , 'password' and returns the user after loggin in the new created user.
+
+2. login({email , password}) and returns the user from the database if correct inputs are given. And it will return a null if the the login process is wrong.
+
+3. logout() this function logs out the current user from the currently logged in device . 
+
+4. getCurrentUser() this function returns the currently logged in user in the present device. If no user is present then it returns null 
+
 
 
 
