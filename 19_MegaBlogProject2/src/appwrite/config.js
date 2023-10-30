@@ -70,5 +70,32 @@ class config{
         }
         return null ;
     }
+
+    // all the function related to files
+
+    uploadFile = async (file)=>{
+        try {
+           return await this.bucket.createFile(configData.bucketId, ID.unique , file);
+            
+        } catch (error) {
+            console.log("got an error while uploading the file  " , error);
+            return false ;
+        }
+    }
+
+    deleteFile = async (fileId)=>{
+        try {
+            await this.bucket.deleteFile(configData.bucketId , fileId);
+            return true ;
+            
+        } catch (error) {
+            console.log('got an error while deleting the file')
+            return false ;
+        }
+    }
+
+    getFilePreview(fileId) {
+        return this.bucket.getFilePreview(conf.bucketId, fileId);
+    }
     
 }

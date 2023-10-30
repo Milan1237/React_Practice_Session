@@ -67,6 +67,26 @@ We have design four function related to Authentication Service. And the function
 
 4. getCurrentUser() this function returns the currently logged in user in the present device. If no user is present then it returns null 
 
+**Post related Service :**
+
+We have created database function related to Post or delete a post.
+
+createPost() : takes a object which has {UserId , Content , FeaturedImage , Title ,Status , Slug} these things as parameter. 
+
+updatePost() : takes a object which has  {Content , FeaturedImage , Title ,Status , Slug} this as a parameter and returns updated the post.
+
+deletePost(): function takes only the id or slug of the post
+
+getPost(): getPost function is used a get a particulor post. It only takes the slug of the post.
+
+getPosts(): getPosts returns all the files created by all the  user. it doesn't take any parameter.
+
+uploadFile(): uploadFile takes the file as parameter and returns the file after upload.
+
+deleteFile(): deleteFile takes the fileId as parameter. It returns true if the deletion of the file got succeed.
+
+getFilePreview(): getFilePreview takes the fileId as parameter and returns the file;
+
 
 
 
