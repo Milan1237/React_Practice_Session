@@ -22,3 +22,4 @@ export const authStore = createSlice({
 })
 
 export default authStore.reducer ;
+export const {login , logout} = authStore.actions ;

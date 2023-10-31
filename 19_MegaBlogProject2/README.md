@@ -88,7 +88,26 @@ deleteFile(): deleteFile takes the fileId as parameter. It returns true if the d
 getFilePreview(): getFilePreview takes the fileId as parameter and returns the file;
 
 
+## Universal Data Access
 
+**IntroDuction**
+We have used Redux toolkit for to get the data everywhere in the whole application.
 
+**Accessing the data**
+import {useSelector} from react-redux
+take all the value like:
 
+```javascript
+const userData = useSelector((state)=> state.userData); // to check the current userData
+const status = useSelector((state)=> status); //to check wheather the user is logged in or not
+```
+
+**changing the data**
+import {useDispatch} from react-redux
+change all the value like:
+```javascript
+const dispatch = useDispatch()
+dispatch(login({userData})); // to login the user
+dispatch(logout()) //to logout the user
+```
 
