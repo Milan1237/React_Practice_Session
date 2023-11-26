@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import LogoutBtn from "./Logout";
 function Header() {
     const userData = useSelector((state)=> state.status);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const items = [
         {
             name: "Home" ,
@@ -40,7 +40,7 @@ function Header() {
                 {
                     items.map((item)=>{
                         if(item.status){
-                           return <button /* onClick={()=>{navigate(item.location)}}*/  className="mx-8" key={item.name}>{item.name}</button>
+                           return <button onClick={()=>{navigate(item.location)}}  className="mx-8" key={item.name}>{item.name}</button>
                         }
                     })
                 }
